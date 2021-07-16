@@ -17,25 +17,31 @@ interface iusers {
   };
 }
 function Main() {
+  const [inValue, setInValue] = useState("");
+  const onChangeInput = (value) => {
+    setInValue(value);
+  };
   const [users, setUsers] = useState<iusers[]>([]);
   useEffect(() => {
     axios
       .get(`https://jsonplaceholder.typicode.com/users`, {
         params: { _limit: 10 },
       })
-      .then((result) => setUsers(result.data));
-  }, []);
-  const onChangeInput = (value) => {
-   
-    let nowTable = new Array();
-    value = value.toLowerCase();
-    users.map((user) => {
-      let nameTable = user.name.toLocaleLowerCase().substring(0, value.length);
-      if (value === nameTable) {
-        nowTable.push(user);
-      }
-    });
-  };
+      .then((result) => {
+        if (inValue !=="") {
+          let nowTable = new Array();
+          let nowValue = inValue.toLowerCase();
+          result.data.map((user) => {
+            let nameTable = user.name.toLocaleLowerCase().substring(0, nowValue.length);
+            if (nowValue === nameTable) {
+              nowTable.push(user);
+              console.log(user);
+            }
+          })
+          return setUsers(nowTable);
+        } 
+          setUsers(result.data);
+      });},[inValue])
   return (
     <div className="wrapper">
       <div className="chat">
