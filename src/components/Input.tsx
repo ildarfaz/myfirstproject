@@ -1,5 +1,5 @@
 import React from "react";
-function InputContent({ onChangeInput }) {
+function Input({ onChangeInput }) {
   return (
     <div className="header_input">
       <input
@@ -11,4 +11,4 @@ function InputContent({ onChangeInput }) {
     </div>
   );
 }
-export default InputContent;
+export default Input;
