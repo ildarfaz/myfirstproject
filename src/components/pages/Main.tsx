@@ -4,7 +4,7 @@ import Input from "../Input";
 import axios from "axios";
 import "./Main.css";
 import Select from "../Select";
-interface IUsers {
+export interface IUsers {
   id: number;
   name: string;
   email: string;
@@ -17,18 +17,16 @@ interface IUsers {
     street: string;
   };
 }
-
 function Main() {
   const [inputValue, setInputValue] = useState("");
-  const[selectValue, setSelectValue] = useState("");
+  const [selectValue, setSelectValue] = useState("");
   const [companyName, setCompanyName] = useState<string[]>([]);
-  const onChangeInput = (value) => {
+  const onChangeInput = (value:string) => {
     setInputValue(value);
   };
-  const onChangeSelect = (value) => {
+  const onChangeSelect = (value:string) => {
     setSelectValue(value);
-    
-  }
+  };
   const [users, setUsers] = useState<IUsers[]>([]);
   useEffect(() => {
     let nowCompany = new Array<string>();
@@ -38,32 +36,38 @@ function Main() {
         params: { _limit: 10 },
       })
       .then((result) => {
-        if (inputValue !=="") {
-          
+        if (inputValue !== "") {
           let nowValue = inputValue.toLowerCase();
-          result.data.map((user) => {
-            let nameTable = user.name.toLocaleLowerCase().substring(0, nowValue.length);
+          result.data.map((user:IUsers) => {
+            let nameTable = user.name
+              .toLocaleLowerCase()
+              .slice(0, nowValue.length);
             if (nowValue === nameTable) {
               nowTable.push(user);
               nowCompany.push(user.company.name);
             }
-          })
-          if (selectValue!=="") {
-            nowTable = nowTable.filter(user => user.company.name===selectValue);
+          });
+          if (selectValue !== "") {
+            nowTable = nowTable.filter(
+              (user) => user.company.name === selectValue
+            );
           }
-           return setUsers(nowTable),setCompanyName(nowCompany);
-        } 
-        result.data.map((user) => {
-        nowCompany.push(user.company.name);
+          return setUsers(nowTable), setCompanyName(nowCompany);
+        }
+        result.data.map((user:IUsers) => {
+          nowCompany.push(user.company.name);
         });
         nowTable = result.data;
-        if (selectValue!=="") {
-          nowTable = nowTable.filter(user => user.company.name===selectValue);
+        if (selectValue !== "") {
+          nowTable = nowTable.filter(
+            (user) => user.company.name === selectValue
+          );
         }
         setCompanyName(nowCompany);
         setUsers(nowTable);
-      });},[inputValue,selectValue])
-      
+      });
+  }, [inputValue, selectValue]);
+
   return (
     <div className="wrapper">
       <div className="chat">
@@ -111,12 +115,15 @@ function Main() {
       </div>
       <div className="header_content">
         <div className="header">
-          <Input onChangeInput={onChangeInput}/>
+          <Input onChange={onChangeInput} />
         </div>
         <hr />
         <div className="content_main">
           <div className="content_h">
-             <Select  companyName={companyName} onChangeSelect={onChangeSelect}/>
+          <p>
+        Company:
+            <Select title={companyName} onChange={onChangeSelect} />
+            </p>
             <input
               className="button"
               type="button"
@@ -125,7 +132,8 @@ function Main() {
             />
           </div>
           <div className="content_table" id="content_table">
-            <Table users={users}/>
+            
+            <Table users={users} />
           </div>
         </div>
       </div>

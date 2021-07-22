@@ -1,12 +1,11 @@
 import React from "react";
-function Input({ onChangeInput }) {
+function Input({onChange}:any) {
   return (
     <div className="header_input">
       <input
         type="text"
         placeholder="Search for a contact"
-        id="input1"
-        onChange={(even) => onChangeInput(even.target.value)}
+        onChange={(event) => onChange(event.target.value)}
       />
     </div>
   );

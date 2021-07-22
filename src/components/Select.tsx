@@ -1,17 +1,12 @@
 import React from "react";
 
-function Select({companyName, onChangeSelect }) { 
+function Select({title, onChange }:any) { 
     return ( 
-        <form action="formdata" method="post" name="form1">
-        <p>
-        Company:
-          <select name="list1" id="input2" onChange={(even) => onChangeSelect(even.target.value)}> 
+          <select onChange={(event) => onChange(event.target.value)}> 
             <option value="">All</option>
-             {companyName&&companyName.map(name => (
+             {title&&title.map((name:string) => ( 
                 <option key={name} value={name}>{name}</option>
             ))}; 
            </select>
-        </p>
-      </form>
     )}
 export default Select;

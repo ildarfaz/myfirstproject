@@ -1,9 +1,9 @@
 import React from "react";
 import "./Table.css";
-function Table({ users }) {
-
+import {IUsers} from "./pages/Main";
+function Table(props:{users:IUsers[]}) {
   return (
-    <table id="table1">
+    <table>
       <thead>
         <tr>
           <th>
@@ -18,13 +18,13 @@ function Table({ users }) {
         </tr>
       </thead>
       <tbody>
-        {users&&
-          users.map(user => (
+        {props.users&&
+          props.users.map(user => (
             <tr key={user.id}>
               <td>
                 <input type="checkbox" />
               </td>
-              <td> {user.name}</td>
+              <td>{user.name}</td>
               <td> {user.email}</td>
               <td>{user.company.name}</td>
               <td>{user.address.city}</td>
