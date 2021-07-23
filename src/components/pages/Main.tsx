@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Table from "../Table";
-import Input from "../Input";
+import { Table } from "../Table";
+import { Input } from "../Input";
 import axios from "axios";
 import "./Main.css";
-import Select from "../Select";
+import { Select } from "../Select";
 export interface IUsers {
   id: number;
   name: string;
@@ -17,20 +17,17 @@ export interface IUsers {
     street: string;
   };
 }
-function Main() {
+export const Main = () => {
   const [inputValue, setInputValue] = useState("");
   const [selectValue, setSelectValue] = useState("");
   const [companyName, setCompanyName] = useState<string[]>([]);
-  const onChangeInput = (value:string) => {
-    setInputValue(value);
-  };
-  const onChangeSelect = (value:string) => {
-    setSelectValue(value);
-  };
   const [users, setUsers] = useState<IUsers[]>([]);
+  window.onbeforeunload = () => {
+    return false;
+  };
   useEffect(() => {
     let nowCompany = new Array<string>();
-    let nowTable = new Array();
+    let nowTable: Array<IUsers> = new Array<IUsers>();
     axios
       .get(`https://jsonplaceholder.typicode.com/users`, {
         params: { _limit: 10 },
@@ -38,7 +35,7 @@ function Main() {
       .then((result) => {
         if (inputValue !== "") {
           let nowValue = inputValue.toLowerCase();
-          result.data.map((user:IUsers) => {
+          result.data.map((user: IUsers) => {
             let nameTable = user.name
               .toLocaleLowerCase()
               .slice(0, nowValue.length);
@@ -54,7 +51,7 @@ function Main() {
           }
           return setUsers(nowTable), setCompanyName(nowCompany);
         }
-        result.data.map((user:IUsers) => {
+        result.data.map((user: IUsers) => {
           nowCompany.push(user.company.name);
         });
         nowTable = result.data;
@@ -115,14 +112,14 @@ function Main() {
       </div>
       <div className="header_content">
         <div className="header">
-          <Input onChange={onChangeInput} />
+          <Input onChange={setInputValue} />
         </div>
         <hr />
         <div className="content_main">
           <div className="content_h">
-          <p>
-        Company:
-            <Select title={companyName} onChange={onChangeSelect} />
+            <p>
+              Company:
+              <Select title={companyName} onChange={setSelectValue} />
             </p>
             <input
               className="button"
@@ -132,7 +129,6 @@ function Main() {
             />
           </div>
           <div className="content_table" id="content_table">
-            
             <Table users={users} />
           </div>
         </div>
@@ -140,4 +136,4 @@ function Main() {
     </div>
   );
 }
-export default Main;
+

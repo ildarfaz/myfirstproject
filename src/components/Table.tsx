@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 import "./Table.css";
-import {IUsers} from "./pages/Main";
-function Table(props:{users:IUsers[]}) {
+import { IUsers } from "./pages/Main";
+export const Table = (props: { users: IUsers[] }) => {
   return (
     <table>
       <thead>
@@ -14,12 +14,12 @@ function Table(props:{users:IUsers[]}) {
           <th>Company name</th>
           <th>City</th>
           <th>Street</th>
-          <th>website</th>
+          <th>Website</th>
         </tr>
       </thead>
       <tbody>
-        {props.users&&
-          props.users.map(user => (
+        {props.users &&
+          props.users.map((user) => (
             <tr key={user.id}>
               <td>
                 <input type="checkbox" />
@@ -35,5 +35,4 @@ function Table(props:{users:IUsers[]}) {
       </tbody>
     </table>
   );
-}
-export default Table;
+};
