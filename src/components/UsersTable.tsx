@@ -1,7 +1,8 @@
-import React, { FC } from "react";
-import "./Table.css";
-import { IUsers } from "./pages/Main";
-export const Table = (props: { users: IUsers[] }) => {
+import React, { FC } from "react"
+import "./UsersTable.css"
+import { IUser } from "./types/User"
+import { IUsers } from "./types/User"
+export const UsersTable = ({users}:IUsers) => {
   return (
     <table>
       <thead>
@@ -18,8 +19,8 @@ export const Table = (props: { users: IUsers[] }) => {
         </tr>
       </thead>
       <tbody>
-        {props.users &&
-          props.users.map((user) => (
+        {users &&
+          users.map((user:IUser) => (
             <tr key={user.id}>
               <td>
                 <input type="checkbox" />
@@ -34,5 +35,5 @@ export const Table = (props: { users: IUsers[] }) => {
           ))}
       </tbody>
     </table>
-  );
-};
+  )
+}

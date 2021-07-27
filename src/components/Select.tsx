@@ -1,14 +1,14 @@
 import React, { FC } from "react";
 interface IProps {
-  title: string[];
+  options: string[];
   onChange(value: string): void;
 }
-export const Select: FC<IProps> = (props) => {
+export const Select: FC<IProps> = ({ options, onChange }) => {
   return (
-    <select onChange={(event) => props.onChange(event.target.value)}>
+    <select onChange={(event) => onChange(event.target.value)}>
       <option value="">All</option>
-      {props.title &&
-        props.title.map((name: string) => (
+      {options &&
+        options.map((name: string) => (
           <option key={name} value={name}>
             {name}
           </option>

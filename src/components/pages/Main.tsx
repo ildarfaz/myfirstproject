@@ -1,33 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Table } from "../Table";
+import { UsersTable } from "../UsersTable";
 import { Input } from "../Input";
 import axios from "axios";
 import "./Main.css";
 import { Select } from "../Select";
-export interface IUsers {
-  id: number;
-  name: string;
-  email: string;
-  website: string;
-  company: {
-    name: string;
-  };
-  address: {
-    city: string;
-    street: string;
-  };
-}
+import { IUser } from "../types/User";
 export const Main = () => {
   const [inputValue, setInputValue] = useState("");
   const [selectValue, setSelectValue] = useState("");
   const [companyName, setCompanyName] = useState<string[]>([]);
-  const [users, setUsers] = useState<IUsers[]>([]);
+  const [users, setUsers] = useState<IUser[]>([]);
   window.onbeforeunload = () => {
     return false;
   };
   useEffect(() => {
     let nowCompany = new Array<string>();
-    let nowTable: Array<IUsers> = new Array<IUsers>();
+    let nowTable = new Array<IUser>();
     axios
       .get(`https://jsonplaceholder.typicode.com/users`, {
         params: { _limit: 10 },
@@ -35,7 +23,7 @@ export const Main = () => {
       .then((result) => {
         if (inputValue !== "") {
           let nowValue = inputValue.toLowerCase();
-          result.data.map((user: IUsers) => {
+          result.data.map((user: IUser) => {
             let nameTable = user.name
               .toLocaleLowerCase()
               .slice(0, nowValue.length);
@@ -51,7 +39,7 @@ export const Main = () => {
           }
           return setUsers(nowTable), setCompanyName(nowCompany);
         }
-        result.data.map((user: IUsers) => {
+        result.data.map((user: IUser) => {
           nowCompany.push(user.company.name);
         });
         nowTable = result.data;
@@ -60,8 +48,10 @@ export const Main = () => {
             (user) => user.company.name === selectValue
           );
         }
+        if (nowTable.length > 0) {
+          setUsers(nowTable);
+        }
         setCompanyName(nowCompany);
-        setUsers(nowTable);
       });
   }, [inputValue, selectValue]);
 
@@ -119,7 +109,7 @@ export const Main = () => {
           <div className="content_h">
             <p>
               Company:
-              <Select title={companyName} onChange={setSelectValue} />
+              <Select options={companyName} onChange={setSelectValue} />
             </p>
             <input
               className="button"
@@ -129,11 +119,10 @@ export const Main = () => {
             />
           </div>
           <div className="content_table" id="content_table">
-            <Table users={users} />
+            <UsersTable users={users} />
           </div>
         </div>
       </div>
     </div>
   );
-}
-
+};
