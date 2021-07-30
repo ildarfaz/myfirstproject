@@ -1,9 +1,20 @@
-import "./UsersTable.css";
-import { IUser } from "./types/User";
-import { IUsers } from "./types/User";
-export const UsersTable = ({ users }: IUsers) => {
-  return (
-    <table>
+import * as React from 'react';
+import { connect } from 'react-redux';
+import "../components/UsersTable.css";
+import { IAppState } from '../store/Store';
+
+import { IUser } from "../components/types/User";
+
+
+interface IProps {
+  users: IUser[];
+}
+
+class UsersTable extends React.Component<IProps> {
+  public render() {
+    const { users } = this.props;
+    return (
+      <table>
       <thead>
         <tr>
           <th>
@@ -34,5 +45,15 @@ export const UsersTable = ({ users }: IUsers) => {
           ))}
       </tbody>
     </table>
-  );
+    );
+  }
+}
+
+
+const mapStateToProps = (store: IAppState) => {
+  return {
+    users: store.usersState.users,
+  };
 };
+
+export default connect(mapStateToProps)(UsersTable);

@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { UsersTable } from "../UsersTable";
+import React, { useState, useEffect, FC } from "react";
+import  UsersTable  from "../../containers/UsersTable";
 import { Input } from "../Input";
 import axios from "axios";
 import "./Main.css";
 import { Select } from "../Select";
 import { IUser } from "../types/User";
-export const Main = () => {
+export const Main = () => { 
   const [inputValue, setInputValue] = useState("");
   const [selectValue, setSelectValue] = useState("");
   const [companyName, setCompanyName] = useState<string[]>([]);
   const [users, setUsers] = useState<IUser[]>([]);
+ 
   window.onbeforeunload = () => {
     return false;
   };
@@ -119,7 +120,8 @@ export const Main = () => {
             />
           </div>
           <div className="content_table" id="content_table">
-            <UsersTable users={users} />
+            <UsersTable />
+
           </div>
         </div>
       </div>

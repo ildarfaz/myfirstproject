@@ -25,11 +25,14 @@ hr {
 .wrapper {
   display: flex;
   min-height: 100vh;
+
 }
 
 .header_content {
   flex: 8;
   background: #f5f6f8;
+  height: 100vh;
+  
 }
 .chat {
   z-index: 1;
@@ -135,7 +138,7 @@ hr {
   margin-left: 36px;
   background: #f5f6f8;
   width: 95%;
-  height: max-content;
+  height: 82vh;
 }
 .content_h {
   height: min-content;
@@ -171,4 +174,5 @@ form p {
 .content_table {
   margin-top: 24px;
   background: #fff;
+  min-height: 100%;
 }
