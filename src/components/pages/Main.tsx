@@ -1,61 +1,23 @@
-import React, { useState, useEffect, FC } from "react";
-import  UsersTable  from "../../containers/UsersTable";
+import React, { useState, useEffect } from "react";
 import { Input } from "../Input";
-import axios from "axios";
 import "./Main.css";
 import { Select } from "../Select";
-import { IUser } from "../types/User";
+import { UsersTable } from "../UsersTable";
+import { getUsers } from "../../store/actions/UsersActions";
+import { useDispatch, useSelector } from "react-redux";
+import { IUser } from "../../types/User";
 export const Main = () => { 
   const [inputValue, setInputValue] = useState("");
   const [selectValue, setSelectValue] = useState("");
-  const [companyName, setCompanyName] = useState<string[]>([]);
-  const [users, setUsers] = useState<IUser[]>([]);
- 
+  const dispatch = useDispatch()
+  const usersList = useSelector((state:any) => state.users)
+  const {users} = usersList;
   window.onbeforeunload = () => {
     return false;
   };
-  useEffect(() => {
-    let nowCompany = new Array<string>();
-    let nowTable = new Array<IUser>();
-    axios
-      .get(`https://jsonplaceholder.typicode.com/users`, {
-        params: { _limit: 10 },
-      })
-      .then((result) => {
-        if (inputValue !== "") {
-          let nowValue = inputValue.toLowerCase();
-          result.data.map((user: IUser) => {
-            let nameTable = user.name
-              .toLocaleLowerCase()
-              .slice(0, nowValue.length);
-            if (nowValue === nameTable) {
-              nowTable.push(user);
-              nowCompany.push(user.company.name);
-            }
-          });
-          if (selectValue !== "") {
-            nowTable = nowTable.filter(
-              (user) => user.company.name === selectValue
-            );
-          }
-          return setUsers(nowTable), setCompanyName(nowCompany);
-        }
-        result.data.map((user: IUser) => {
-          nowCompany.push(user.company.name);
-        });
-        nowTable = result.data;
-        if (selectValue !== "") {
-          nowTable = nowTable.filter(
-            (user) => user.company.name === selectValue
-          );
-        }
-        if (nowTable.length > 0) {
-          setUsers(nowTable);
-        }
-        setCompanyName(nowCompany);
-      });
-  }, [inputValue, selectValue]);
-
+  useEffect(() => {      
+    dispatch(getUsers());
+  }, [dispatch, selectValue]);
   return (
     <div className="wrapper">
       <div className="chat">
@@ -110,7 +72,7 @@ export const Main = () => {
           <div className="content_h">
             <p>
               Company:
-              <Select options={companyName} onChange={setSelectValue} />
+              <Select options={users.map((user:IUser)=>user.company.name)} onChange={setSelectValue} />
             </p>
             <input
               className="button"
@@ -120,8 +82,7 @@ export const Main = () => {
             />
           </div>
           <div className="content_table" id="content_table">
-            <UsersTable />
-
+            <UsersTable users={users} selectValue={selectValue}/>
           </div>
         </div>
       </div>

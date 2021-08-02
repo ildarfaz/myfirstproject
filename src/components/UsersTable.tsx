@@ -1,7 +1,13 @@
 import "./UsersTable.css";
-import { IUser } from "./types/User";
-import { IUsers } from "./types/User";
-export const UsersTable = ({ users }: IUsers) => {
+import { IUser } from "../types/User";
+interface IProps {
+  users:IUser[];
+  selectValue:string;
+}
+export const UsersTable = ({ users, selectValue }: IProps) => {
+  if (selectValue) {
+   users = users.filter((user) => user.company.name === selectValue); 
+  }
   return (
     <table>
       <thead>
@@ -18,6 +24,7 @@ export const UsersTable = ({ users }: IUsers) => {
         </tr>
       </thead>
       <tbody>
+        
         {users &&
           users.map((user: IUser) => (
             <tr key={user.id}>
