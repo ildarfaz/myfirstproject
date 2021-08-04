@@ -25,14 +25,12 @@ hr {
 .wrapper {
   display: flex;
   min-height: 100vh;
-
 }
 
 .header_content {
   flex: 8;
   background: #f5f6f8;
   height: 100vh;
-  
 }
 .chat {
   z-index: 1;

@@ -2,7 +2,7 @@ import React, { FC } from "react";
 interface IProps {
   onChange(value: string): void;
 }
-export const Input: FC<IProps> = ({onChange}) => {
+export const Input: FC<IProps> = ({ onChange }) => {
   return (
     <div className="header_input">
       <input

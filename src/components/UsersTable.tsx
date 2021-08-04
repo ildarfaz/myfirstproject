@@ -1,13 +1,20 @@
 import "./UsersTable.css";
 import { IUser } from "../types/User";
+import React, { useEffect, useState } from "react";
 interface IProps {
-  users:IUser[];
-  selectValue:string;
+  users: IUser[];
+  selectValue: string;
 }
 export const UsersTable = ({ users, selectValue }: IProps) => {
-  if (selectValue) {
-   users = users.filter((user) => user.company.name === selectValue); 
-  }
+  const [sortedUsers, setsortedUsers] = useState<IUser[]>([]);
+  useEffect(() => {
+    if (selectValue) {
+      return setsortedUsers(
+        users.filter((user: IUser) => user.company.name === selectValue)
+      );
+    }
+    return setsortedUsers(users);
+  }, [users, selectValue]);
   return (
     <table>
       <thead>
@@ -24,9 +31,8 @@ export const UsersTable = ({ users, selectValue }: IProps) => {
         </tr>
       </thead>
       <tbody>
-        
-        {users &&
-          users.map((user: IUser) => (
+        {sortedUsers &&
+          sortedUsers.map((user: IUser) => (
             <tr key={user.id}>
               <td>
                 <input type="checkbox" />

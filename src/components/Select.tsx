@@ -3,7 +3,7 @@ interface IProps {
   options: string[];
   onChange(value: string): void;
 }
-export const Select: FC<IProps> = ({ options, onChange}) => {
+export const Select: FC<IProps> = ({ options, onChange }) => {
   return (
     <select onChange={(event) => onChange(event.target.value)}>
       <option value="">All</option>

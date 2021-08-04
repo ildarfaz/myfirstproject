@@ -6,18 +6,32 @@ import { UsersTable } from "../UsersTable";
 import { getUsers } from "../../store/actions/UsersActions";
 import { useDispatch, useSelector } from "react-redux";
 import { IUser } from "../../types/User";
-export const Main = () => { 
+export const Main = () => {
   const [inputValue, setInputValue] = useState("");
   const [selectValue, setSelectValue] = useState("");
-  const dispatch = useDispatch()
-  const usersList = useSelector((state:any) => state.users)
-  const {users} = usersList;
+  const [searchUsers, setSearchUsers] = useState<IUser[]>([]);
+  const dispatch = useDispatch();
+  const { users } = useSelector((state: any) => state.users);
   window.onbeforeunload = () => {
     return false;
   };
-  useEffect(() => {      
+  useEffect(() => {
     dispatch(getUsers());
-  }, [dispatch, selectValue]);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (inputValue) {
+      return setSearchUsers(
+        users.filter(
+          (user: IUser) =>
+            user.name.substring(0, inputValue.length).toLowerCase() ===
+            inputValue.toLowerCase()
+        )
+      );
+    } 
+    return setSearchUsers(users);
+  }, [inputValue, users]);
+
   return (
     <div className="wrapper">
       <div className="chat">
@@ -72,7 +86,10 @@ export const Main = () => {
           <div className="content_h">
             <p>
               Company:
-              <Select options={users.map((user:IUser)=>user.company.name)} onChange={setSelectValue} />
+              <Select
+                options={searchUsers.map((user: IUser) => user.company.name)}
+                onChange={setSelectValue}
+              />
             </p>
             <input
               className="button"
@@ -82,7 +99,7 @@ export const Main = () => {
             />
           </div>
           <div className="content_table" id="content_table">
-            <UsersTable users={users} selectValue={selectValue}/>
+            <UsersTable users={searchUsers} selectValue={selectValue} />
           </div>
         </div>
       </div>

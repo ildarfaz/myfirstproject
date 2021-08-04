@@ -1,29 +1,33 @@
- table {
-    width: 100%;
-    font-family: Ponnins, serif;
-    font-size: 13px;
-    color: darkblue;
-    text-align: left;
+table {
+  width: 100%;
+  font-family: Ponnins, serif;
+  font-size: 13px;
+  color: darkblue;
+  text-align: left;
+
 }
- thead {
-    height: 48px;
-    font-weight: normal;
-    opacity: 50%;
+thead {
+  height: 48px;
+  font-weight: normal;
+  opacity: 50%;
+  
 }
- td:nth-child(n+3) {
-    font-weight: normal;
-    opacity: 50%;
+td:nth-child(n + 3) {
+  font-weight: normal;
+  opacity: 50%;
 }
- td:nth-child(2) {
-    font-weight: bold;
+td:nth-child(2) {
+  font-weight: bold;
 }
- th:last-child, td:last-child {
-    text-align: right;
+th:last-child,
+td:last-child {
+  text-align: right;
 }
- th:first-child, td:first-child{
-   width: 64px;
-   text-align: center;
+th:first-child,
+td:first-child {
+  width: 64px;
+  text-align: center;
 }
- td{
-    height: 64px; 
+td {
+  height: 64px;
 }
