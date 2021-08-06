@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Input } from "../Input";
 import "./Main.css";
 import { Select } from "../Select";
@@ -6,20 +6,22 @@ import { UsersTable } from "../UsersTable";
 import { getUsers } from "../../store/actions/UsersActions";
 import { useDispatch, useSelector } from "react-redux";
 import { IUser } from "../../types/User";
+import { UserModal } from "../UserModal";
 export const Main = () => {
-  const [inputValue, setInputValue] = useState("");
-  const [selectValue, setSelectValue] = useState("");
-  const [searchUsers, setSearchUsers] = useState<IUser[]>([]);
+  const [inputValue, setInputValue] = React.useState("");
+  const [selectValue, setSelectValue] = React.useState("");
+  const [searchUsers, setSearchUsers] = React.useState<IUser[]>([]);
   const dispatch = useDispatch();
   const { users } = useSelector((state: any) => state.users);
+  const [addModalOpen, setAddModalOpen] = React.useState<Boolean>(false);
   window.onbeforeunload = () => {
     return false;
   };
-  useEffect(() => {
+  React.useEffect(() => {
     dispatch(getUsers());
   }, [dispatch]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (inputValue) {
       return setSearchUsers(
         users.filter(
@@ -91,11 +93,12 @@ export const Main = () => {
                 onChange={setSelectValue}
               />
             </p>
+            
             <input
               className="button"
-              type="button"
-              value="Add contact"
-              id="button1"
+              value="Add User"
+              type = "button"
+              onClick = {()=>setAddModalOpen(true)}
             />
           </div>
           <div className="content_table" id="content_table">
@@ -103,6 +106,7 @@ export const Main = () => {
           </div>
         </div>
       </div>
+      {addModalOpen&&<UserModal onClose={setAddModalOpen}/>}
     </div>
   );
 };

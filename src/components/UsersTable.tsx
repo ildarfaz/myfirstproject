@@ -1,13 +1,14 @@
 import "./UsersTable.css";
 import { IUser } from "../types/User";
-import React, { useEffect, useState } from "react";
+import React from "react";
 interface IProps {
   users: IUser[];
   selectValue: string;
 }
 export const UsersTable = ({ users, selectValue }: IProps) => {
-  const [sortedUsers, setsortedUsers] = useState<IUser[]>([]);
-  useEffect(() => {
+  console.log("test");
+  const [sortedUsers, setsortedUsers] = React.useState<IUser[]>([]);
+  React.useEffect(() => {
     if (selectValue) {
       return setsortedUsers(
         users.filter((user: IUser) => user.company.name === selectValue)
