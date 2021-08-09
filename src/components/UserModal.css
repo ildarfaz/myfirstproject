@@ -9,7 +9,27 @@
   background: rgba(0, 0, 0, 0.5);
 }
 .UserModal {
-  height: 300px;
-  width: 400px;
+  height: 250px;
+  width: 350px;
   background: white;
+  padding: 10px;
+}
+.UserModalInput {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+.UserModalInput input {
+  outline: none;
+  border: 0;
+  text-align: center;
+}
+
+.UserModalButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.UserModalButton button:nth-child(even) {
+  margin-left: 5px;
 }

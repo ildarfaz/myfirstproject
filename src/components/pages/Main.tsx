@@ -23,6 +23,7 @@ export const Main = () => {
 
   React.useEffect(() => {
     if (inputValue) {
+      console.log("1");
       return setSearchUsers(
         users.filter(
           (user: IUser) =>
@@ -30,7 +31,7 @@ export const Main = () => {
             inputValue.toLowerCase()
         )
       );
-    } 
+    }
     return setSearchUsers(users);
   }, [inputValue, users]);
 
@@ -89,16 +90,19 @@ export const Main = () => {
             <p>
               Company:
               <Select
-                options={searchUsers.map((user: IUser) => user.company.name)}
+                options={
+                  searchUsers &&
+                  searchUsers.map((user: IUser) => user.company.name)
+                }
                 onChange={setSelectValue}
               />
             </p>
-            
+
             <input
               className="button"
               value="Add User"
-              type = "button"
-              onClick = {()=>setAddModalOpen(true)}
+              type="button"
+              onClick={() => setAddModalOpen(true)}
             />
           </div>
           <div className="content_table" id="content_table">
@@ -106,7 +110,7 @@ export const Main = () => {
           </div>
         </div>
       </div>
-      {addModalOpen&&<UserModal onClose={setAddModalOpen}/>}
+      {addModalOpen && <UserModal onClose={setAddModalOpen} />}
     </div>
   );
 };

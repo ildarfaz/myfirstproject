@@ -5,8 +5,7 @@ interface IProps {
   users: IUser[];
   selectValue: string;
 }
-export const UsersTable = ({ users, selectValue }: IProps) => {
-  console.log("test");
+export const UsersTable:React.FC<IProps> = ({ users, selectValue }) => {
   const [sortedUsers, setsortedUsers] = React.useState<IUser[]>([]);
   React.useEffect(() => {
     if (selectValue) {
