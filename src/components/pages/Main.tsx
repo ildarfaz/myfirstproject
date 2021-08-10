@@ -20,10 +20,8 @@ export const Main = () => {
   React.useEffect(() => {
     dispatch(getUsers());
   }, [dispatch]);
-
-  React.useEffect(() => {
-    if (inputValue) {
-      console.log("1");
+  const sortUsers = React.useCallback((inputValue, users) => {
+       if (inputValue) {
       return setSearchUsers(
         users.filter(
           (user: IUser) =>
@@ -33,8 +31,10 @@ export const Main = () => {
       );
     }
     return setSearchUsers(users);
-  }, [inputValue, users]);
-
+  },[])
+  React.useEffect(() => {
+    sortUsers(inputValue, users);
+  }, [sortUsers,inputValue,  users]);
   return (
     <div className="wrapper">
       <div className="chat">
