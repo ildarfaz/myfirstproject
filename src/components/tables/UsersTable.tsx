@@ -1,5 +1,5 @@
 import "./UsersTable.css";
-import { IUser } from "../types/User";
+import { IUser } from "../../types/User";
 import React from "react";
 interface IProps {
   users: IUser[];

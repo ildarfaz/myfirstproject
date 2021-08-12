@@ -172,5 +172,7 @@ form p {
 .content_table {
   margin-top: 24px;
   background: #fff;
-  min-height: 100%;
+  max-height: 592px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }

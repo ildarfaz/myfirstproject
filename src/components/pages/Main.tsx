@@ -1,12 +1,12 @@
 import React from "react";
-import { Input } from "../Input";
+import { Input } from "../../inputs/Input";
 import "./Main.css";
-import { Select } from "../Select";
-import { UsersTable } from "../UsersTable";
+import { Select } from "../selects/Select";
+import { UsersTable } from "../tables/UsersTable";
 import { getUsers } from "../../store/actions/UsersActions";
 import { useDispatch, useSelector } from "react-redux";
 import { IUser } from "../../types/User";
-import { UserModal } from "../UserModal";
+import { UserModal } from "../modals/UserModal";
 export const Main = () => {
   const [inputValue, setInputValue] = React.useState("");
   const [selectValue, setSelectValue] = React.useState("");
@@ -14,6 +14,9 @@ export const Main = () => {
   const dispatch = useDispatch();
   const { users } = useSelector((state: any) => state.users);
   const [addModalOpen, setAddModalOpen] = React.useState<Boolean>(false);
+  const handleCloseModal = () => {
+    setAddModalOpen(false);
+  }
   window.onbeforeunload = () => {
     return false;
   };
@@ -110,7 +113,7 @@ export const Main = () => {
           </div>
         </div>
       </div>
-      {addModalOpen && <UserModal onClose={setAddModalOpen} />}
+      {addModalOpen && <UserModal onClose={handleCloseModal} />}
     </div>
   );
 };

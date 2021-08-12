@@ -4,13 +4,11 @@ table {
   font-size: 13px;
   color: darkblue;
   text-align: left;
-
 }
 thead {
   height: 48px;
   font-weight: normal;
   opacity: 50%;
-  
 }
 td:nth-child(n + 3) {
   font-weight: normal;
