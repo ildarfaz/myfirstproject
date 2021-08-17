@@ -14,17 +14,14 @@ export const Main = () => {
   const dispatch = useDispatch();
   const { users } = useSelector((state: any) => state.users);
   const [addModalOpen, setAddModalOpen] = React.useState<Boolean>(false);
-  const handleCloseModal = () => {
+  const handleCloseModal = React.useCallback(() => {
     setAddModalOpen(false);
-  }
-  window.onbeforeunload = () => {
-    return false;
-  };
+  }, []);
   React.useEffect(() => {
     dispatch(getUsers());
-  }, [dispatch]);
-  const sortUsers = React.useCallback((inputValue, users) => {
-       if (inputValue) {
+  }, []);
+  React.useEffect(() => {
+    if (inputValue) {
       return setSearchUsers(
         users.filter(
           (user: IUser) =>
@@ -34,10 +31,7 @@ export const Main = () => {
       );
     }
     return setSearchUsers(users);
-  },[])
-  React.useEffect(() => {
-    sortUsers(inputValue, users);
-  }, [sortUsers,inputValue,  users]);
+  }, [inputValue, users]);
   return (
     <div className="wrapper">
       <div className="chat">
@@ -109,7 +103,11 @@ export const Main = () => {
             />
           </div>
           <div className="content_table" id="content_table">
-            <UsersTable users={searchUsers} selectValue={selectValue} />
+            {searchUsers.length > 0 ? (
+              <UsersTable users={searchUsers} selectValue={selectValue} />
+            ) : (
+              <h2>Information not found</h2>
+            )}
           </div>
         </div>
       </div>

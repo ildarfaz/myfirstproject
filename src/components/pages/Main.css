@@ -176,3 +176,6 @@ form p {
   overflow-y: auto;
   overflow-x: hidden;
 }
+.content_table h2 {
+  text-align: center;
+}
