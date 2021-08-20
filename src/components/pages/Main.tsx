@@ -1,6 +1,6 @@
 import React from "react";
 import { Input } from "../../inputs/Input";
-import "./Main.css";
+import "../../scss/Main.scss";
 import { Select } from "../selects/Select";
 import { UsersTable } from "../tables/UsersTable";
 import { getUsers } from "../../store/actions/UsersActions";

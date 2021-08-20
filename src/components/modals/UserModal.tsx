@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./UserModal.css";
+import "../../scss/UserModal.scss";
 import axios from "axios";
 interface IProps {
   onClose(): void;

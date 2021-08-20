@@ -1,4 +1,4 @@
-import "./UsersTable.css";
+import "../../scss/UsersTable.scss";
 import { IUser } from "../../types/User";
 import React from "react";
 interface IProps {

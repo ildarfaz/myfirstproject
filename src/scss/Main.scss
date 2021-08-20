@@ -6,31 +6,33 @@
   font-family: "Poppins";
   src: href("%PUBLIC_URL%/fonts/Poppins/Poppins-Regular.ttf");
 }
+@mixin font($font, $size: 14px) {
+  font-family: $font;
+  font-size: $size;
+}
+$colorHr: #ebeff2;
+$colorContent: #f5f6f8;
+$colorButton: #109cf1;
 * {
   margin: 0;
   padding: 0;
   background-repeat: no-repeat;
+  border: 0;
 }
 a {
   text-decoration: none;
 }
 hr {
   height: 1px;
-  background: #ebeff2;
-  border: 0;
-}
-.chat_info a {
-  color: gray;
+  background: $colorHr;
 }
 .wrapper {
   display: flex;
-  max-height: 100vh;
 }
 
 .header_content {
   flex: 8;
-  background: #f5f6f8;
-  height: 100vh;
+  background: $colorContent;
 }
 .chat {
   z-index: 1;
@@ -39,21 +41,23 @@ hr {
   max-width: 256px;
   box-shadow: 6px 0px 18px 0px #0000000f;
 }
-.chat_link a {
-  margin-left: 24px;
-  text-decoration: none;
-  font-family: "OpenSans";
-  font-size: 18px;
-}
 .chat_link {
   height: 43px;
   margin-top: 17px;
+  a {
+    margin-left: 24px;
+    text-decoration: none;
+    @include font("OpenSans", 18px);
+  }
 }
 .chat_contact {
-  font-family: Poppins;
+  @include font("Poppins");
   display: flex;
   margin-left: 15px;
   margin-top: 27px;
+  a {
+    font-size: 11px;
+  }
 }
 .chat_profile {
   margin-right: 10px;
@@ -62,32 +66,29 @@ hr {
   margin-right: 24px;
   align-items: center;
   margin-top: 5px;
-}
-
-.chat_contact p {
-  font-size: 14px;
-}
-.chat_contact a {
-  font-size: 11px;
+  a {
+    color: gray;
+  }
 }
 .chat_panel {
   margin-top: 41.5px;
-}
-.chat_panel a {
-  display: flex;
-  font-family: "Poppins";
-  font-size: 13px;
-  margin-top: 20px;
-  color: darkblue;
-}
-
-.chat_panel ul {
-  list-style-type: none;
-  margin-right: 0px;
-  margin-left: 26.5px;
-}
-.chat_panel li {
-  padding-left: 31.5px;
+  a {
+    display: flex;
+    @include font("Poppins", 13px);
+    margin-top: 20px;
+    color: darkblue;
+  }
+  ul {
+    list-style-type: none;
+    margin-right: 0px;
+    margin-left: 26.5px;
+  }
+  li {
+    padding-left: 31.5px;
+  }
+  hr {
+    margin-top: 26.5px;
+  }
 }
 
 .dashboard {
@@ -108,13 +109,9 @@ hr {
 .deals {
   background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.49996 4.03325H17.5C17.5717 4.03325 17.6333 4.09485 17.6333 4.16659V15.8333C17.6333 15.905 17.5717 15.9666 17.5 15.9666H2.49996C2.42823 15.9666 2.36663 15.905 2.36663 15.8333V4.16659C2.36663 4.09485 2.42823 4.03325 2.49996 4.03325Z' stroke='%23C2CFE0' stroke-width='1.4'/%3E%3Crect x='6.5' y='3.33325' width='1.16667' height='13.3333' fill='%23C2CFE0'/%3E%3Crect x='12.3334' y='3.33325' width='1.16667' height='13.3333' fill='%23C2CFE0'/%3E%3C/svg%3E ");
 }
-.chat_panel hr {
-  margin-top: 26.5px;
-}
 .settings {
   background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.00004 8.33325C4.08337 8.33325 3.33337 9.08325 3.33337 9.99992C3.33337 10.9166 4.08337 11.6666 5.00004 11.6666C5.91671 11.6666 6.66671 10.9166 6.66671 9.99992C6.66671 9.08325 5.91671 8.33325 5.00004 8.33325ZM15 8.33325C14.0834 8.33325 13.3334 9.08325 13.3334 9.99992C13.3334 10.9166 14.0834 11.6666 15 11.6666C15.9167 11.6666 16.6667 10.9166 16.6667 9.99992C16.6667 9.08325 15.9167 8.33325 15 8.33325ZM10 8.33325C9.08337 8.33325 8.33337 9.08325 8.33337 9.99992C8.33337 10.9166 9.08337 11.6666 10 11.6666C10.9167 11.6666 11.6667 10.9166 11.6667 9.99992C11.6667 9.08325 10.9167 8.33325 10 8.33325Z' fill='%23C2CFE0'/%3E%3C/svg%3E ");
 }
-
 .header {
   min-height: 60px;
   flex: 1;
@@ -128,13 +125,11 @@ hr {
   padding-left: 30px;
   min-width: 130px;
   outline: none;
-  border: 0;
   margin-left: 38.5px;
 }
 .content_main {
   margin-top: 35px;
   margin-left: 36px;
-  background: #f5f6f8;
   width: 95%;
   height: 82vh;
 }
@@ -144,6 +139,7 @@ hr {
   justify-content: space-between;
   min-width: 500px;
   align-items: flex-end;
+
 }
 .content {
   min-height: min-content;
@@ -151,23 +147,15 @@ hr {
 .button {
   width: 160px;
   height: 42px;
-  background: #109cf1;
-  border: 0;
+  background: $colorButton;
   border-radius: 4px;
   color: #fff;
 }
 select {
-  font-family: Poppins;
-  font-size: 12px;
+  @include font("Poppins", 12px);
   color: #109cf1;
-  min-width: 60px;
-  border: 0;
-  box-sizing: content-box;
   outline: none;
-  background: #f5f6f8;
-}
-form p {
-  color: #aeaeae;
+  background: $colorContent;
 }
 .content_table {
   margin-top: 24px;
@@ -175,7 +163,7 @@ form p {
   max-height: 592px;
   overflow-y: auto;
   overflow-x: hidden;
-}
-.content_table h2 {
-  text-align: center;
+  h2 {
+    text-align: center;
+  }
 }

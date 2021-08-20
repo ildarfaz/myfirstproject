@@ -10,12 +10,15 @@ thead {
   font-weight: normal;
   opacity: 50%;
 }
-td:nth-child(n + 3) {
-  font-weight: normal;
-  opacity: 50%;
-}
-td:nth-child(2) {
-  font-weight: bold;
+td {
+  height: 64px;
+  &:nth-child(n + 3) {
+    font-weight: normal;
+    opacity: 50%;
+  }
+  &:nth-child(2) {
+    font-weight: bold;
+  }
 }
 th:last-child,
 td:last-child {
@@ -25,7 +28,4 @@ th:first-child,
 td:first-child {
   width: 64px;
   text-align: center;
-}
-td {
-  height: 64px;
 }
