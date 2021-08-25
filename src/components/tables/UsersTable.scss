@@ -1,0 +1,38 @@
+table {
+  width: 100%;
+  font-family: Ponnins, serif;
+  font-size: 13px;
+  color: darkblue;
+  text-align: left;
+  thead {
+    height: 48px;
+    font-weight: normal;
+    opacity: 50%;
+    th {
+      &:last-child {
+        text-align: right;
+      }
+      &:first-child {
+        width: 64px;
+        text-align: center;
+      }
+    }
+  }
+}
+td {
+  height: 64px;
+  &:nth-child(n + 3) {
+    font-weight: normal;
+    opacity: 50%;
+  }
+  &:nth-child(2) {
+    font-weight: bold;
+  }
+  &:last-child {
+    text-align: right;
+  }
+  &:first-child {
+    width: 64px;
+    text-align: center;
+  }
+}

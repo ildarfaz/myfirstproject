@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import "../../scss/UserModal.scss";
+import React from "react";
+import "./UserModal.scss";
 import axios from "axios";
 interface IProps {
   onClose(): void;
 }
 export const UserModal: React.FC<IProps> = ({ onClose }) => {
-  const [userID, setUserID] = useState("");
-  const [newTitle, setNewTitle] = useState("");
-  const [newBody, setNewBody] = useState("");
+  const [userID, setUserID] = React.useState("");
+  const [newTitle, setNewTitle] = React.useState("");
+  const [newBody, setNewBody] = React.useState("");
   const handleSave = () => {
     if (userID && newTitle && newBody) {
       axios
