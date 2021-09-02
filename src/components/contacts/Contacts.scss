@@ -1,0 +1,43 @@
+$colorButton: #109cf1;
+$colorContent: #f5f6f8;
+
+@mixin font($font, $size: 14px) {
+    font-family: $font;
+    font-size: $size;
+  }
+.content_main {
+    margin-top: 35px;
+    margin-left: 36px;
+    width: 95%;
+    height: 82vh;
+  }
+  .content_h {
+    height: min-content;
+    display: flex;
+    justify-content: space-between;
+    min-width: 500px;
+    align-items: flex-end;
+  }
+  .button {
+    width: 160px;
+    height: 42px;
+    background: $colorButton;
+    border-radius: 4px;
+    color: #fff;
+  }
+  select {
+    @include font("Poppins", 12px);
+    color: #109cf1;
+    outline: none;
+    background: $colorContent;
+  }
+  .content_table {
+    margin-top: 24px;
+    background: #fff;
+    max-height: 592px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    h2 {
+      text-align: center;
+    }
+  }
