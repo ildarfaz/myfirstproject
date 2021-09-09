@@ -8,7 +8,7 @@ import {
   Tooltip,
 } from "recharts";
 import "./Dashboard.scss";
-export const Dashboard = () => {
+export const Dashboard: React.FC = () => {
   const data = [
     { name: "1 Dec", uv: 50, pv: 2400, amt: 2400 },
     { uv: 100, pv: 2400, amt: 2400 },
