@@ -1,11 +1,13 @@
 import React, { FC } from "react";
-import { Main } from "./components/pages/Main";
-
+import { BrowserRouter as Router } from "react-router-dom";
+import { Main } from "./components/main/Main";
 const App: FC = () => {
   return (
-    <div className="App">
-      <Main />
-    </div>
+    <Router>
+      <div className="App">
+        <Main />
+      </div>
+    </Router>
   );
 };
 export default App;

@@ -54,8 +54,8 @@ export const Contacts: React.FC<IProps> = ({ inputValue }) => {
           Add User
         </button>
       </div>
-      <div className="content_table" id="content_table">
-        {searchUsers.length > 0 ? (
+      <div className="content_table">
+        {searchUsers.length !== 0 ? (
           <UsersTable users={searchUsers} selectValue={selectValue} />
         ) : (
           <h2>Information not found</h2>
