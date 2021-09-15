@@ -10,7 +10,7 @@ table {
     opacity: 50%;
     th {
       &:last-child {
-        text-align: right;
+        text-align: center;
       }
       &:first-child {
         width: 64px;
@@ -29,7 +29,7 @@ td {
     font-weight: bold;
   }
   &:last-child {
-    text-align: right;
+    text-align: center;
   }
   &:first-child {
     width: 64px;

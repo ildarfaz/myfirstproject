@@ -29,6 +29,7 @@ export const UsersTable: React.FC<IProps> = React.memo(
             <th>City</th>
             <th>Street</th>
             <th>Website</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -44,6 +45,7 @@ export const UsersTable: React.FC<IProps> = React.memo(
                 <td>{user.address.city}</td>
                 <td>{user.address.street}</td>
                 <td>{user.website}</td>
+                <td><button type="button" onClick={()=>alert("test")}>Del</button></td>
               </tr>
             ))}
         </tbody>
