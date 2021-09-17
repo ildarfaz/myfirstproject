@@ -3,7 +3,7 @@ import { Select } from "../selects/Select";
 import { UsersTable } from "../tables/UsersTable";
 import { IUser } from "../../types/User";
 import { getUsers } from "../../store/actions/UsersActions";
-import { UserModal } from "../modals/UserModal";
+import { UserModal } from "../modals/userModal/UserModal";
 import { useDispatch, useSelector } from "react-redux";
 import "./Contacts.scss";
 interface IProps {
