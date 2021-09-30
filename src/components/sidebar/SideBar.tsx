@@ -2,23 +2,23 @@ import {Link} from "react-router-dom";
 import "./SideBar.scss";
 export const SideBar = () => {
   return (
-    <div className="chat">
-      <div className="chat_link">
+    <div className="sidebar">
+      <div className="sidebar_link">
         <a href="https://www.google.com/">SaaS Kit</a>
       </div>
       <hr className="wrapper_hr" />
-      <div className="chat_contact">
-        <div className="chat_profile">
+      <div className="sidebar_contact">
+        <div className="sidebar_profile">
           <img src="./img/profile_photo.png" alt="some value" />
         </div>
-        <div className="chat_info">
+        <div className="sidebar_info">
           <p>Sierra Ferguson</p>
           <a href="mailto:s.ferguson@gmail.com">s.ferguson@gmail.com</a>
         </div>
       </div>
-      <div className="chat_panel">
+      <div className="sidebar_panel">
         <ul>
-          <li className="chat_dashboard">
+          <li className="sidebar_dashboard">
             <Link to="/dashboard">Dashboard</Link>
           </li>
           <li className="tasks">
