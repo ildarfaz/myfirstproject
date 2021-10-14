@@ -8,7 +8,7 @@ table {
   thead {
     height: 48px;
     font-weight: normal;
-    opacity: 50%;
+    opacity: 0.5;
     th {
       &:last-child {
         text-align: center;
@@ -24,7 +24,7 @@ td {
   height: 64px;
   &:nth-child(n + 3) {
     font-weight: normal;
-    opacity: 50%;
+    opacity: 0.5;
   }
   &:nth-child(2) {
     font-weight: bold;
