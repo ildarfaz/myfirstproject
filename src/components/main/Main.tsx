@@ -10,6 +10,7 @@ export const Main = () => {
   return (
     <div className="wrapper">
       <SideBar />
+  
       <div className="header_content">
         <div className="header">
           <Input onChange={setInputValue} />

@@ -1,9 +1,9 @@
-import React, { FC } from "react";
+import React from "react";
 interface IProps {
   options: string[];
   onChange(value: string): void;
 }
-export const Select: FC<IProps> = ({ options, onChange }) => {
+export const Select: React.FC<IProps> = ({ options, onChange }) => {
   return (
     <select onChange={(event) => onChange(event.target.value)}>
       <option value="">All</option>
