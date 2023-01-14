@@ -6,11 +6,12 @@ import { getUsers } from "../../store/actions/UsersActions";
 import { UserModal } from "../modals/userModal/UserModal";
 import { useDispatch, useSelector } from "react-redux";
 import "./Contacts.scss";
+import { AppDispatch } from "../../types/actions";
 interface IProps {
   inputValue: string;
 }
 export const Contacts: React.FC<IProps> = ({ inputValue }) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { users } = useSelector((state: any) => state.users);
   const [selectValue, setSelectValue] = React.useState("");
   const [searchUsers, setSearchUsers] = React.useState<IUser[]>([]);
