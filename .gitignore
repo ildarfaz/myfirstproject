@@ -29,3 +29,4 @@ yarn-error.log*
 .idea/myfirstproject.iml
 .idea/vcs.xml
 .idea/workspace.xml
+package-lock.json
