@@ -28,3 +28,4 @@ yarn-error.log*
 .idea/myfirstproject.iml
 .idea/vcs.xml
 .idea/workspace.xml
+yarn.lock
