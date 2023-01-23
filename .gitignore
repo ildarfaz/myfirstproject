@@ -21,6 +21,7 @@
 .env.production.local
 
 npm-debug.log*
+yarn.lock
 yarn-debug.log*
 yarn-error.log*
 .idea/inspectionProfiles/Project_Default.xml
@@ -29,3 +30,5 @@ yarn-error.log*
 .idea/vcs.xml
 .idea/workspace.xml
 yarn.lock
+package-lock.json
+
