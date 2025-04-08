@@ -1,28 +1,31 @@
-import React from "react";
+import { useCallback, useEffect, useState } from "react";
+
 import { Select } from "../selects/Select";
 import { UsersTable } from "../tables/UsersTable";
 import { IUser } from "../../types/User";
 import { getUsers } from "../../store/actions/UsersActions";
 import { UserModal } from "../modals/userModal/UserModal";
 import { useDispatch, useSelector } from "react-redux";
-import "./Contacts.scss";
 import { AppDispatch } from "../../types/actions";
+
+import styles from './style.module.scss';
+
 interface IProps {
   inputValue: string;
 }
 export const Contacts: React.FC<IProps> = ({ inputValue }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { users } = useSelector((state: any) => state.users);
-  const [selectValue, setSelectValue] = React.useState("");
-  const [searchUsers, setSearchUsers] = React.useState<IUser[]>([]);
-  const [addModalOpen, setAddModalOpen] = React.useState<Boolean>(false);
-  const handleCloseModal = React.useCallback(() => {
+  const [selectValue, setSelectValue] = useState("");
+  const [searchUsers, setSearchUsers] = useState<IUser[]>([]);
+  const [addModalOpen, setAddModalOpen] = useState<Boolean>(false);
+  const handleCloseModal = useCallback(() => {
     setAddModalOpen(false);
   }, []);
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(getUsers());
   }, []);
-  React.useEffect(() => {
+  useEffect(() => {
     if (inputValue) {
       return setSearchUsers(
         users.filter(
@@ -35,9 +38,9 @@ export const Contacts: React.FC<IProps> = ({ inputValue }) => {
     return setSearchUsers(users);
   }, [inputValue, users]);
   return (
-    <div className="content_main">
+    <div className={styles.content_main}>
       {addModalOpen && <UserModal onClose={handleCloseModal} />}
-      <div className="content_h">
+      <div className={styles.content_h}>
         <p>
           Company:
           <Select
@@ -48,14 +51,13 @@ export const Contacts: React.FC<IProps> = ({ inputValue }) => {
           />
         </p>
         <button
-          className="button"
-          type="button"
+          className={styles.content_btn}
           onClick={() => setAddModalOpen(true)}
         >
           Add User
         </button>
       </div>
-      <div className="content_table">
+      <div className={styles.content_table}>
         {searchUsers.length !== 0 ? (
           <UsersTable users={searchUsers} selectValue={selectValue} />
         ) : (

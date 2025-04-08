@@ -1,37 +1,25 @@
 {
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "~/*": ["./*"],
-      "api/*": ["./stores/api/*"],
-      "auth/*": ["./stores/auth/*"],
-      "app/*": ["./stores/app/*"],
-      "components/*": ["./components/*"],
-      "styles/*": ["./styles/*"],
-      "layouts/*": ["./layouts/*"],
-      "middlewares/*": ["./middlewares/*"],
-      "utils/*": ["./utils/*"],
-      "values/*": ["./utils/values/*"],
-      "dictionaries/*": ["./utils/values/dictionaries/*"]
+      "@/*": [
+        "src/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ]
     },
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "experimentalDecorators": true,
-    "incremental": false,
-    
-  },
-  "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*"]
+  }
 }

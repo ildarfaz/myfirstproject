@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import {
   LineChart,
   Line,
@@ -7,8 +7,11 @@ import {
   YAxis,
   Tooltip,
 } from "recharts";
-import "./Dashboard.scss";
-export const Dashboard: React.FC = () => {
+
+import styles from "./style.module.scss";
+
+export const Dashboard: FC = () => {
+
   const data = [
     { name: "1 Dec", uv: 50, pv: 2400, amt: 2400 },
     { uv: 100, pv: 2400, amt: 2400 },
@@ -19,11 +22,11 @@ export const Dashboard: React.FC = () => {
     { name: "30 Dec", uv: 150, pv: 2400, amt: 2400 },
     { uv: 153, pv: 2400, amt: 2400 },
   ];
+
   return (
-    <div className="dashboard">
-      <div className="dhb_tasks">tasks</div>
-      <div className="dhb_graphic">
-        <div className="deals_graphic">
+    <div className={styles.dashboard}>
+      <div className={styles.dashboard_content}>
+        <div className={styles.dashboard_chart}>
           <LineChart
             width={500}
             height={250}
@@ -37,7 +40,6 @@ export const Dashboard: React.FC = () => {
             <Tooltip />
           </LineChart>
         </div>
-        <div className="tasks_chart"></div>
       </div>
     </div>
   );

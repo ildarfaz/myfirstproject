@@ -1,18 +1,21 @@
-import React from "react";
-import { Input } from "../../inputs/Input";
-import "./Main.scss";
+import { useState } from "react";
+
+import { Input } from "../../input/Input";
+
 import { Routes, Route } from 'react-router-dom';
-import { Contacts } from "../contacts/Contacts";
-import { Dashboard } from "../dashboard/Dashboard";
+import { Contacts } from "../contacts";
+import { Dashboard } from "../dashboard";
 import { SideBar } from "../sidebar/SideBar";
+
+import style from "./styles.module.scss";
 export const Main = () => {
-  const [inputValue, setInputValue] = React.useState("");
+  const [inputValue, setInputValue] = useState("");
   return (
-    <div className="wrapper">
+    <div className={style.wrapper}>
       <SideBar />
 
-      <div className="header_content">
-        <div className="header">
+      <div className={style.header_content}>
+        <div className={style.header}>
           <Input onChange={setInputValue} />
         </div>
         <hr />

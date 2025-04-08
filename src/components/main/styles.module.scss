@@ -1,0 +1,15 @@
+
+.wrapper {
+  display: flex;
+}
+.header_content {
+  flex: 8;
+  background: $colorContent;
+}
+.header {
+  min-height: 60px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #fff;
+}

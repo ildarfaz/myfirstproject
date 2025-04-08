@@ -1,0 +1,19 @@
+.dashboard {
+  display: flex;
+  margin-top: 35px;
+  margin-left: 36px;
+  margin-right: 38px;
+  margin-bottom: 36px;
+
+  &_content {
+    min-height: 418px;
+    min-width: 445px;
+    margin-left: 30px;
+  }
+
+  &_graphic {
+    min-width: 540px;
+    min-height: 290px;
+    background: white;
+  }
+}

@@ -1,0 +1,26 @@
+
+@font-face {
+  font-family: "OpenSans";
+  src: href("%PUBLIC_URL%/fonts/Open_Sans/OpenSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: href("%PUBLIC_URL%/fonts/Poppins/Poppins-Regular.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  border: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+hr {
+  height: 1px;
+  background: $colorHr;
+}

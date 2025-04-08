@@ -1,10 +1,13 @@
-import React from "react";
-interface IProps {
+import { FC } from 'react';
+
+import style from './styles.module.scss';
+type TInput = {
   onChange(value: string): void;
 }
-export const Input: React.FC<IProps> = ({ onChange }) => {
+
+export const Input: FC<TInput> = ({ onChange }) => {
   return (
-    <div className="header_input">
+    <div className={style.input}>
       <input
         type="search"
         placeholder="Search for a contact"
